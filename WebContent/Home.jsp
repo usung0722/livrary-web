@@ -203,7 +203,7 @@ body {
 					<a href="Search.jsp" target="iframe">Search</a>
 				</div>
 				<div class="menuvar">
-					<a href="#">Return book</a>
+					<a href="returnbook.jsp" target="iframe">Return book</a>
 				</div>
 				<div class="menuvar">
 					<a href="#">My Page</a>

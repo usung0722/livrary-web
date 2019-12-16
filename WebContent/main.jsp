@@ -15,21 +15,17 @@ body {
 	margin: 0px;
 }
 .left{
-	margin-left : 10%;
-	float: left;
- 	width: 40%;
- 	height: 100%;
+ 	width: 50%;
+ 	float: left;
 }
 .right{
-	margin-right : 10%;
-	float: right;
-	width: 40%;
-	height: 100%;
+	width: 50%;
+	float: left;
 }
 .item{
-display: inline-block;
+display: block;
 margin: 30px;
-width: 100%;
+height: 250px;
 	
 
 }
@@ -116,8 +112,7 @@ margin-right: 10px;
 			
 			
 			%>
-			<a href="#">
-				<div class="item" onclick="window.open('bookinfo.jsp?&book_name=<%=book_name %>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">
+				<div  class="item" onclick="window.open('bookinfo.jsp?&book_name=<%=book_name %>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">
 					<div class="img">
 					<img src="img/best_icon.png" style="z-index: 99; position: absolute; width: 100px"><img src="Upload/<%=book_imgad%>">
 					</div>
@@ -127,7 +122,6 @@ margin-right: 10px;
 					<div class="book_price">  price : <%=book_price %></div>
 				</div>
 		
-			</a>
 		<%
 			
 		}

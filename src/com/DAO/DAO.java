@@ -29,6 +29,48 @@ public class DAO {
 		}
 	}
 	
+public void bookreturn(String id,String name) {
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		
+		try {
+			con = datasource.getConnection();
+			String sql = "update book set book_use = '0' "
+					+ "where book_name = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			res = pstmt.executeQuery();
+			
+			
+			 sql = "delete from bookinfo where user_name = ? and book_name = ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			res = pstmt.executeQuery();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
 public void bookbuy(String id,String name) {
 		
 		
@@ -321,6 +363,57 @@ public ArrayList<BookDTO> bookselect(String name) {
 		return list;
 	}
 	
+	
+	public ArrayList<BookDTO> mybook(String id) {
+
+		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+
+		try {
+//			con = DriverManager.getConnection(url,id,pw);
+			con = datasource.getConnection();
+			String sql = "select * from book where book_name in (select book_name from bookinfo where user_name = ? )";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			res = pstmt.executeQuery();
+
+			while (res.next()) {
+				String book_name = res.getString("book_name");
+				String book_price = res.getString("book_price");
+				int book_use = res.getInt("book_use");
+				String book_maker = res.getString("book_maker");
+				String book_author = res.getString("book_author");
+				String book_imgad = res.getString("imgad");
+				int book_bt = res.getInt("book_bt");
+				int book_best = res.getInt("book_best");
+
+				BookDTO bookdto = new BookDTO(book_name, book_price,  book_use, book_maker,book_author,
+						book_imgad,book_bt, book_best);
+				list.add(bookdto);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return list;
+	}
 	
 	public ArrayList<BookDTO> newselect() {
 

@@ -13,17 +13,19 @@ body {
 	font-family: 'Sunflower', sans-serif;
 	padding: 0px;
 	margin: 0px;
+	text-align: center;
 }
 
 .sh {
 	max-width: 1300px;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
+	text-align: left;
+	
 }
 .tb{
-display: inline;
-margin: 30px;
+display: inline-block;
+margin: 40px;
 }
 a{
 text-decoration: none;
@@ -35,13 +37,13 @@ color: black;
 </head>
 <body>
 	<div style="width: 100%; height: 100%;">
-		<div class="sh">
 		<form method="get" action="Search.jsp">
 		<h1>Search</h1>
 		<input type="text" name="shbox">
 		<input type="submit" value="검색">
 		<input type="button" value="전체보기" onclick="location.href='Search.jsp'">
 		</form>
+		<div class="sh">
 
 
 			<%
@@ -69,8 +71,8 @@ color: black;
 			
 			%>
 
-			
-			<table class= "tb" onclick="window.open('bookinfo.jsp?&book_name=<%=book_name %>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">
+			<div class= "tb">
+			<table  onclick="window.open('bookinfo.jsp?&book_name=<%=book_name %>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">
 				<tr>
 					<th style=" width: 150px;"><%=book_name %></th>
 					<tr>
@@ -80,26 +82,11 @@ color: black;
 						<td><%=book_price %> 원</td>
 					</tr>
 			</table>
+			</div>
 			
 			
 			
 			<%} %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
