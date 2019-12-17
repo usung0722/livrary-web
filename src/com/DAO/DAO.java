@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.sql.DataSource;
-import javax.xml.ws.Response;
 
 import com.DTO.BookDTO;
+import com.DTO.userDTO;
 
 public class DAO {
 	DataSource datasource;
@@ -253,6 +252,94 @@ public boolean signup(String id,String pw,String phone,String ad1,String ad2) {
 		
 		return false;
 	}
+
+public void userModified(String id,String pw,String phone,String ad1,String ad2) {
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	
+	try {
+		con = datasource.getConnection();
+		
+		String sql = "update userdb set id = ? , pw = ?, ph = ?,ad1 =? , ad2= ? where id = ?";
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		pstmt.setString(2, pw);
+		pstmt.setString(3, phone);
+		pstmt.setString(4, ad1);
+		pstmt.setString(5, ad2);
+		pstmt.setString(6, id);
+		res = pstmt.executeQuery();
+		
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (res != null)
+				res.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close();
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+	
+}
+
+public userDTO userInfo(String id) {
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	userDTO userdto = null;
+	try {
+		con = datasource.getConnection();
+		
+		String sql = "select * from userdb where id = ?";
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		res = pstmt.executeQuery();
+		
+		while (res.next()) {
+			String id2 =res.getString("id");
+			String pw =res.getString("pw");
+			String ph =res.getString("ph");
+			String ad1 =res.getString("ad1");
+			String ad2 =res.getString("ad2");
+			
+			 userdto = new userDTO(id2,pw,ph,ad1,ad2);
+		}
+		
+		
+
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (res != null)
+				res.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close();
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+	
+	return userdto;
+}
 
 
 public ArrayList<BookDTO> bookselect(String name) {

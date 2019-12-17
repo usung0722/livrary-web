@@ -34,6 +34,19 @@ body {
 	padding: 0px;
 	margin: 0px;
 	overflow: auto;
+	animation-name: navbar-fade;
+	 animation-duration: 2s;
+   	 -webkit-animation-name: navbar-fade;
+  	 -webkit-animation-duration: 2s;
+}
+@keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
+}
+
+@-webkit-keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
 }
 
 #homeheader {
@@ -49,7 +62,9 @@ body {
 	color: white;
 	z-index: 90;
 	cursor: pointer;
+	
 }
+
 
 .menu>.menusize {
 	float: right;
@@ -105,14 +120,13 @@ body {
 	margin: 0px;
 }
 
-.homefont {
-	font-size: 60px;
+.title-container {
 	text-align: center;
 }
 
 @media screen and (max-width:1000px) {
-	.homefont {
-		font-size: 100px;
+	.title-container {
+		font-size: 50px;
 		text-align:left;
 		display: inline;
 	}
@@ -163,9 +177,9 @@ body {
 	<div class="container">
 
 		<div id="homeheader">
-			<p class="homefont">
-				<a id="homehref" href="http://59.4.10.185:8090/Livrary/Home.jsp">Home Library </a>
-			</p>
+			<div class="title-container">
+				<a id="homehref" href="http://59.4.10.185:8090/Livrary/Home.jsp"><h1>Home Library</h1> </a>
+			</div>
 			<br>
 			<%
 				if (session.getAttribute("sessionid") == null) {
@@ -203,10 +217,19 @@ body {
 					<a href="Search.jsp" target="iframe">Search</a>
 				</div>
 				<div class="menuvar">
+				<% if (session.getAttribute("sessionid") == null) { %>
+				<a href="Loginpz.jsp" target="iframe">Return book</a>
+					<%} else {%>
 					<a href="returnbook.jsp" target="iframe">Return book</a>
+					<%} %>
+					
 				</div>
 				<div class="menuvar">
-					<a href="#">My Page</a>
+				<% if (session.getAttribute("sessionid") == null) { %>
+				<a href="Loginpz.jsp" target="iframe">My Page</a>
+					<%} else {%>
+					<a href="MyPage.jsp"  target="iframe">My Page</a>
+					<%} %>
 				</div>
 			</div>
 		</div>

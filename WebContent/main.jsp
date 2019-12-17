@@ -9,10 +9,43 @@
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
+.item {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+}
+.item:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+}
+
 body {
 	font-family: 'Sunflower', sans-serif;
 	padding: 0px;
 	margin: 0px;
+	animation-name: navbar-fade;
+	 animation-duration: 2s;
+   	 -webkit-animation-name: navbar-fade;
+  	 -webkit-animation-duration: 2s;
+}
+@keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
+}
+
+@-webkit-keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
 }
 .left{
  	width: 50%;

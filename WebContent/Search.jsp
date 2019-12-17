@@ -14,6 +14,19 @@ body {
 	padding: 0px;
 	margin: 0px;
 	text-align: center;
+	animation-name: navbar-fade;
+	 animation-duration: 2s;
+   	 -webkit-animation-name: navbar-fade;
+  	 -webkit-animation-duration: 2s;
+}
+@keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
+}
+
+@-webkit-keyframes navbar-fade {
+    from { opacity: .4}
+    to { opacity: 1 }
 }
 
 .sh {
@@ -30,6 +43,25 @@ margin: 40px;
 a{
 text-decoration: none;
 color: black;
+}
+.tb {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+}
+.tb:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
 }
 </style>
 
