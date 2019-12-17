@@ -5,7 +5,7 @@ livrary-web은 가상의 도서관홈페이지 입니다. 목적은 JSP를 이�
 
 개발기간 : 6일
 
-운영환경 : Apach Tomcat
+운영환경 : Apach Tomcat, Oracle
 
 사용환경 :  JAVA8, servlet, model2, HTML5, CSS3, Javascript, JDBC
 
